@@ -1,0 +1,36 @@
+ <ion-modal-view ng-controller="UserCtrl">
+
+  <ion-header-bar class="bar-light"> 
+      <button class="button button-icon button-light icon-awicon-back" ng-click="closeEditModal()"></button> 
+      <h1 class="title">Edit my profile</h1>
+  </ion-header-bar> 
+
+  <ion-content>
+  <div class="row">
+    <div style="margin-top:40px;"class="col text-center"></div>
+    <div style="margin-top:20px;" class="text-center useruserimgc "><img ng-click="selectImage()" ng-src="{{ imgURI }}"> </div> 
+    <div style="margin-top:40px;"class="col text-center"></div>
+  </div>
+
+<div class="list card whitebgdb"> 
+    <ion-item class="item item-icon-left stable"><i class="icon icon-awicon-user"></i><input ng-model="t.NickName" type="text" name="name" placeholder="name" required></ion-item>
+     <ion-item class="item item-icon-left stable"><i class="icon icon-awicon-wechat"></i><input ng-model="t.WeChat" type="text" name="wechat" placeholder="wechat ID" required></ion-item>
+     <ion-item class="item item-icon-left stable"><i class="icon icon-awicon-no"></i><input ng-model="t.Phone" type="text" name="mobile" placeholder="mobile no."></ion-item>
+     <ion-item class="item item-icon-left stable"><i class="icon icon-awicon-plus"></i><input ng-model="t.Sayings" type="text" name="saying" placeholder="Sayings"></ion-item>
+                                    <!-- Not Interests but Sayings -->
+</div>
+    <div class="item item-divider" style="background:transparent;">
+      <button class="button button-block button-positive" ng-click="changeProfile()">
+	  <div ng-hide="loading">save</div>
+	  <div class="sk-spinner sk-spinner-three-bounce" ng-show="loading">
+          <div class="sk-bounce1"></div>
+          <div class="sk-bounce2"></div>
+          <div class="sk-bounce3"></div>
+      </div>
+	  </button>
+	  
+      </button>      
+      <br/> <br/>  
+    </div> 
+  </ion-content>
+</ion-modal-view>

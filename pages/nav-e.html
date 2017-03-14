@@ -1,0 +1,37 @@
+ <ion-view view-title="nav-e" ng-controller="ListCtrl">
+    <ion-content has-bouncing="true" lazy-scroll>
+
+          <form name="tgs" style="text-align:center;margin-top:-1px;">
+            <label class="   checkboxa" >
+              <input ng-model="tags.eat" type="checkbox">
+            </label>
+            <label class=" checkboxb">
+              <input ng-model="tags.travel" type="checkbox">
+            </label>
+            <label class=" checkboxc">
+              <input ng-model="tags.sports" type="checkbox">
+            </label>
+            <label class=" checkboxd">
+              <input ng-model="tags.study" type="checkbox">
+            </label>
+          </form>
+
+      <div>
+        <ion-refresher on-refresh="doRefresh()" pulling-text="loading"></ion-refresher>
+
+        <ion-list>  
+          <div class="list cardd" ng-repeat="event in events | filter:condition" item="item" ng-controller="EventCtrl" ng-click="openDetailModal('{{event.ApptID}}')">
+            <img ng-cache image-lazy-src="{{ addr(event.Image) ||'img/fish.svg' }}" lazy-scroll-resize="true" class="item-image">
+            <div class="vasttop whitebgdb item item-icon-right light">
+              <i class="stable icon icon-awicon-forward"></i>
+              <h2 class="title" style="color:#888888;">{{event.Title}}</h2>
+              <small style="color:#888888;">{{tagsInfo(event.actTags)}}&ensp;|&ensp;{{event.description}}...</small>
+            </div>
+        </ion-list>
+
+        <ion-infinite-scroll on-infinite="loadMore()" distance="-1%"></ion-infinite-scroll>
+      </div>
+    </ion-content> 
+        <br/><br/><br/><br/><br/>
+        <div class="infiimg"> </div>
+  </ion-view>

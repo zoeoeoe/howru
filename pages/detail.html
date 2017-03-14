@@ -1,0 +1,46 @@
+<ion-modal-view ng-controller="EventCtrl">
+
+  <ion-header-bar class="bar-light"> 
+      <button class="button button-icon button-light icon-awicon-back" ng-click="closeDetailModal()"></button> <h1 class="title">{{detailItem.Title}}</h1>
+
+      <button class="button button-icon button-light icon-awicon-fav" style="position:absolute; right:49px;"ng-click="addtoFav()">
+      </button>
+      <button class="button button-icon button-light icon-awicon-share" ng-click="share('{{detailItem.ApptId}}')"></button>
+  </ion-header-bar>  
+
+  <ion-content class="has-header"> 
+        
+        <div style="max-height:270px; overflow:hidden;"><img style="width:100%;" ng-cache ng-src="{{ detailItem.Image  ||'img/fish.svg'}}" ng-controller="ImageCtrl" ng-click="openModal()"></div>
+
+        <p class="padding">{{ detailItem.description }}</p>
+
+            <div class="row text-center" >
+              <item class="col" style="margin: 1px;background-color: #fff;" ng-click="showCountdown()"><h1 class="icon-awicon-cal"></h1><p>{{ detailItem.Start_Time }}</p></item>
+              <item class="col" style="margin: 1px;background-color: #fff;" ng-click="showVacancy()" ng-show="detailItem.Quota>=detailItem.attenders.length"><h1 class="icon-awicon-people"></h1><p>{{ detailItem.Quota - detailItem.attenders.length}}  vacancies&nbsp;/&nbsp;{{ detailItem.Quota }} quota</p></item>
+			  <item class="col" style="margin: 1px;background-color: #fff;" ng-click="showVacancy()" ng-hide="detailItem.Quota>=detailItem.attenders.length"><h1 class="icon-awicon-people"></h1><p>{{ 0 }}  vacancies&nbsp;/&nbsp;{{ detailItem.Quota }} quota</p></item>
+            </div>
+
+            <div class="row text-center">
+              <item class="col" style="margin: 1px;background-color: #fff;"><h1 class="icon-awicon-loc"></h1><p>{{ detailItem.Location }}</p></item>  
+              <item class="col" style="margin: 1px;background-color: #fff;"><h1 class="icon-awicon-price"></h1><p>{{ detailItem.Price }} HKD</p></item>       
+            </div><br/>
+
+    <ion-item class="text-center" ng-click="openInfoModal(detailItem.creator.pk)">
+     <img  style="width:60px; border-radius:50%; border:none;" ng-cache ng-src="{{ addr(detailItem.creator.Avatar) ||'img/user.svg' }}">
+      <p><small>organized by <strong>{{detailItem.creator.NickName}}</strong><br/>{{u.Mobile}}</small><p/>
+    </ion-item> <br/><br/>
+
+
+    </ion-content>  
+
+    <ion-footer-bar style="background-color:#33cc99;" ng-hide='detailItem.joined' ng-click="join()">
+      <h1 class="title" style="color:#fff;">join!</h1>
+    </ion-footer-bar>   
+    <ion-footer-bar style="background-color:#fff;" ng-show='detailItem.joined'>
+      <h1 class="title" style="color:#33cc99;">joint!</h1>
+    </ion-footer-bar> 
+    <ion-footer-bar style="background-color:#fff;" ng-show='detailItem.ifClosed' >
+      <h1 class="title assertive">closed</h1>
+    </ion-footer-bar> 
+</ion-modal-view>
+

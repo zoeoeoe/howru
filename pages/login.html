@@ -1,0 +1,38 @@
+
+<ion-modal-view name="login-form" ng-controller="LoginCtrl" style=" background-color:#f8f8f8;">
+  <ion-header-bar class="bar-light" style=" background-color:#f8f8f8;"> 
+      <button class="button button-icon button-light icon-awicon-back" ng-click="closeLoginModal()"></button>
+  </ion-header-bar>
+    <img src="img/2333.svg" style="margin-top:60px;opacity:0.1;"> 
+    <ion-content style="margin-top:40%;"  scroll="false">
+
+      <form name="login" ng-submit="submit()">
+          <ion-item class="  item-icon-left put ">
+            <i class="icon icon-awicon-user"></i>
+            <input style="font-size:16px;" type="text" ng-keypress="{'enter':'authenticate()'}" placeholder="enter your student ID" required ng-model="loginData.username" ng-pattern="/^(\d)+(\D)+$/" autofocus="autofocus">
+          </ion-item>
+          <ion-item class="  item-icon-left put ">
+            <i class="icon icon-awicon-lock"></i>
+            <input style="font-size:16px;" type="password" placeholder="enter your password" required ng-minlength="6" ng-model="loginData.password">
+          </ion-item>
+
+            <ion-item class=" item-divider ">
+            <button class="button button-full button-positive" ng-disabled="login.$invalid" type="submit">
+			  <div ng-hide="loading">log in</div>
+			  <div class="sk-spinner sk-spinner-three-bounce" ng-show="loading">
+                <div class="sk-bounce1"></div>
+                <div class="sk-bounce2"></div>
+                <div class="sk-bounce3"></div>
+              </div>
+			</button>
+
+            </ion-item> 
+      </form>
+
+      <div class="row">
+        <a class="col text-left stable padding" ng-click="openForgottenModal()">forgot password?</a>
+        <a class="col text-right positive padding" ng-click="openRegisterModal()">sign up now</a>
+      </div>
+    </ion-content>
+
+</ion-modal-view>

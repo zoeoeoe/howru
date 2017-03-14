@@ -1,0 +1,38 @@
+<ion-modal-view on-drag-right="closeModal()">
+
+  <ion-header-bar class="bar-light"> 
+      <button class="button button-icon button-light icon-awicon-back" ng-click="closeModal()"></button> 
+      <h1 class="title">Profile</h1>
+  </ion-header-bar> 
+
+  <ion-content>
+  <div class="row">
+    <div style="margin-top:40px;"class="col text-center"></div>
+    <div style="margin-top:20px;" class="text-center useruserimgc"><img ng-src="{{ global.user.profile.Avatar ||'img/user.svg' }}"> </div> 
+    <div style="margin-top:40px;"class="col text-center"></div>
+  </div>
+
+      <div class="list card whitebgdb">     
+          <item class="item item-icon-left stable">
+            <i class="icon icon-awicon-user"></i>
+            <p >{{global.user.profile.NickName}} </p>
+          </item>      
+          <item class="item item-icon-left stable">
+            <i class="icon icon-awicon-wechat"></i>
+            <p>{{global.user.profile.WeChat}}</p>
+          </item>
+          <item class="item item-icon-left stable">
+            <i class="icon icon-awicon-no"></i>
+            <p>{{global.user.profile.Phone}}</p>
+          </item>   
+          <item class="item item-icon-left stable">
+            <i class="icon icon-awicon-plus"></i>
+            <p>{{global.user.profile.Sayings}}</p>
+          </item>                      
+    </div>    
+
+    <div class="item item-divider" style="background:transparent;">
+      <button class="button button-block button-positive" ng-click="openEditModal();closeModal()" >edit</button>
+    </div>               
+  </ion-content>
+</ion-modal-view>

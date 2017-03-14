@@ -1,0 +1,81 @@
+
+<ion-modal-view class="slide-in-fromleft" ng-controller="CreateCtrl">
+  <form role="form" method="get">
+  <style type="text/css">
+    #map{
+      height:100px;
+    }
+  </style>
+
+    <ion-header-bar class="bar-light">
+          <h1 class="title">Compose</h1>
+          <button class="button button-clear button-icon button-light icon-awicon-del" ng-click="showConfirm()"></button>
+    </ion-header-bar>
+    <ion-content>
+          <form name="create">    
+          <div class="list card whitebgd"> 
+            
+              <img class="col item-imageup"  ng-click="selectImage()" ng-src="{{ imgURI }}" ><br/>
+            
+            <label class=" item-input whitebgdb" style="margin-top:185px;">
+              <input style="font-size:16px; text-align:center;" type="text" placeholder="hey enter your title here!" ng-model="e.Title">
+            </label> 
+          </div> <br/>       
+
+          <div class="list card whitebgd"> 
+            <div class="item text-center"><p><small>description</small></p></div>
+              <item class="item whitebgdb" >
+                <textarea ng-model="e.description" rows=8 placeholder="hey say something here!" class="padding col whitebgdb"></textarea>
+              </item>                        
+          </div><br/>
+
+          <div class="list card whitebgd" ng-controller="MapCtrl"> 
+            <div class="item text-center" ><p><small>location & time</small></p></div>
+            <ion-item class="item-icon-left item-icon-right whitebgdb">
+            <i class="icon icon-awicon-loc positive"></i>
+            <input type="text" ng-model="e.Location" placeholder="hey type location here!">
+            <i ng-click="initialize()" class="button-small positive icon icon-awicon-nav"></i>
+            </ion-item>
+            <br/>
+            <ion-item class="item-icon-left item-icon-right whitebgdb " style="height:60px;" type="datetime" ng-click="changeDate()" required>
+            <i class="icon icon-awicon-cal positive"></i>
+            <p style="color:#888; margin-top:4px;">{{ e.Start_Time.toDateString() }}</p>
+            </ion-item>
+                        <!-- to
+            <label class="item item-input item-icon-right">
+            <i class="ion-clock stable"></i>
+            &emsp;<input ng-model="e.End_Time" type="datetime" ng-click="changeDate()" required>
+            </label>             -->
+          </div>   <br/>                   
+           
+          <div class="list card whitebgd"> 
+            <div class="item text-center"><p><small>quota<small></p> </div>          
+            <item class="item item-icon-left item-icon-right whitebgdb">
+              <i class="button-small button-positive icon icon-awicon-less button" ng-click="minusQuota()"></i>
+              <h2 class="text-center">{{e.Quota}}</h2>
+              <i class="button-small button-positive icon icon-awicon-more button" ng-click="addQuota()"></i>
+            </item>
+            <div class="item text-center"><br/><p><small>price range</small></p> </div>  
+            <item class="item range range-positive whitebgdb">
+              <i class="icon icon-awicon-price"></i>
+              <input type="range" ng-model="e.Price" min="0" max="1000">
+              <h2>{{e.Price}} HKD</h2>
+            </item>            
+          </div>    <br/>
+
+          <div class="item item-divider" style="background:transparent;">
+            <button class="button button-block button-positive" ng-click="submit('{{TAG}}')" ng-disabled="!e.Title || !e.description || !e.Location "><div ng-hide="loading" >done</div>
+            
+              <div class="sk-spinner sk-spinner-three-bounce"  ng-show='loading'>
+                <div class="sk-bounce1"></div>
+                <div class="sk-bounce2"></div>
+                <div class="sk-bounce3"></div>
+              </div>
+            </button>
+
+            <br/> <br/>  
+          </div>
+          </form>          
+    </ion-content>
+
+</ion-modal-view>

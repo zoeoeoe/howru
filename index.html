@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html ng-app="ionicApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+    
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/ngProgress.css" rel="stylesheet">
+
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize"></script>-->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+	<script src="lib/ionic/js/angular/angular-cookies.js"></script>
+	<script src="lib/ionic/js/angular/angular.js"></script>
+	<script src="lib/ionic/js/angular/angular-translate.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <!--<script src="lib/ngCordova/plugins/imagePicker.js"></script>-->
+    <script src="lib/ngStorage.js"></script>
+    <script src="lib/ng-map.min.js"></script>
+    <!--<script src="lib/imgcache.js"></script>-->
+    <!--<script src="lib/ngImgCache.js"></script>-->
+    <script src="cordova.js"></script>
+    <script src="cordova_plugins.js"></script>
+    <script src="lib/ngCordova/plugins/fileTransfer.js"></script>
+	<script src="lib/ngCordova/plugins/file.js"></script>
+	<script src="lib/ngCordova/dist/ng-cordova.js"></script>
+
+	<script src="scripts/ngProgress.js"></script>
+	<script src="scripts/ionic-image-lazy-load.js"></script>
+
+    <!-- your app's js -->
+    <script src="scripts/services.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers.js"></script>
+
+  </head>
+<ion-side-menus enable-menu-with-back-views="false"  ng-controller="MainCtrl" >
+	<ion-side-menu-content>
+	      <ion-header-bar class="bar-light">
+	        <button class="button button-icon button-light icon-awicon-triple" ng-controller="LeftCtrl" ng-click="toggleLeftSideMenu()"></button>&nbsp;    
+	        <h1 class="title">Howru</h1>
+	        <button class=" button button-icon button-light icon-awicon-plus" ng-controller="RightCtrl" ng-click="toggleRightSideMenu()"></button>
+	      </ion-header-bar>
+
+	      <ion-nav-view></ion-nav-view>
+
+	      <ion-tabs class="tabs-light">
+		    <ion-tab title="discover" icon-off="icon-awicon-discover" ui-sref="nav-e"><ion-nav-view name="nav-e"></ion-nav-view></ion-tab>
+		   <ion-tab title="chats" icon-off="icon-awicon-chat" ui-sref="nav-c"><ion-nav-view name="nav-c"></ion-nav-view></ion-tab>
+		    <ion-tab title="friends" icon-off="icon-awicon-friend" ui-sref="nav-f"><ion-nav-view name="nav-f"></ion-nav-view></ion-tab> 
+		  </ion-tabs>
+	</ion-side-menu-content>
+
+	<ion-side-menu side="left" class="leftmenu" >
+		<ion-content scroll="false" class="has-header" style="background:transparent;">
+			<ion-item nav-clear menu-close class="item" ng-controller="UserCtrl" ng-click="openModal()" style="text-align:center;"><img style="width:80px; border-radius:50%;" ng-src="{{ addr(global.user.profile.Avatar) ||'img/user.svg' }}">
+			</ion-item>
+
+		    <ion-item nav-clear menu-close class="item item-icon-left whitetext" ng-controller="HistoryCtrl" ng-click="openModal()" >
+		      <i style="margin-left:48px;" class="icon icon-awicon-cal"></i>
+		      &emsp;&emsp;&emsp;Activities 
+		    </ion-item>
+		    <ion-item nav-clear menu-close class="item item-icon-left whitetext" ng-controller="PrefCtrl" ng-click="openModal()">
+		      <i style="margin-left:48px;"class="icon icon-awicon-pref"></i>
+		      &emsp;&emsp;&emsp;Settings
+		    </ion-item>
+			<ion-item nav-clear menu-close class="item item-icon-left whitetext" ng-controller="FavCtrl" ng-click="openModal()">
+		      <i style="margin-left:48px;"class="icon icon-awicon-fav"></i>
+		      &emsp;&emsp;&emsp;Favorites
+		    </ion-item>
+		    <ion-item nav-clear menu-close class="item item-icon-left whitetext" ng-click="showFeedback()" >
+		      <i style="margin-left:48px;"class="icon icon-awicon-idea"></i>
+		      &emsp;&emsp;&emsp;Feedback
+		    </ion-item>
+		    <ion-item nav-clear menu-close class="item item-icon-left whitetext" ng-controller="GuideCtrl" ng-click="openModal()">
+		      <i style="margin-left:48px;"class="icon icon-awicon-guide"></i>
+		      &emsp;&emsp;&emsp;Introuction
+		    </ion-item>
+		</ion-content>		
+	</ion-side-menu>
+
+	<ion-side-menu scroll="false" side="right" class="rightmenu">
+		<ion-header-bar class="bar-clear"><h1 class="title" style="color:#fff;">New Event </h1></ion-header-bar>
+		<ion-content scroll="false" style="background:transparent;">
+			<icon-item nav-clear menu-close class="item" ng-click="openCreateAppointModal('E')" style="text-align:center; color:#fff;"><img style="width:60px;" src="img/event-eat.svg"><br/>eat
+			</icon-item>
+		    </ion-item>
+		    <ion-item nav-clear menu-close class="item" style="text-align:center; color:#fff;" ng-click="openCreateAppointModal('H')">
+		      <img style="width:60px;" src="img/event-travel.svg"><br/>travel
+		    </ion-item>
+		    <ion-item nav-clear menu-close class="item" style="text-align:center; color:#fff;" ng-click="openCreateAppointModal('S')">
+		      <img style="width:60px;" src="img/event-sports.svg"><br/>sports
+		    </ion-item>
+		    <ion-item nav-clear menu-close class="item" style="text-align:center; color:#fff;" ng-click="openCreateAppointModal('A')">
+		      <img style="width:60px;" src="img/event-study.svg"><br/>study</i>
+		    </ion-item>
+		</ion-content>
+	</ion-side-menu>
+</ion-side-menus>
+
+</html>

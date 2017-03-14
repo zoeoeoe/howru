@@ -1,0 +1,26 @@
+<ion-modal-view style="background-color:#f8f8f8;" ng-controller="LoginCtrl">
+<ion-header-bar class="bar-light" style=" background-color:#f8f8f8;"> 
+      <button class="button button-icon button-light icon-awicon-back" ng-click="closeForgottenModal();openLoginModal()"></button>
+  </ion-header-bar>
+  <ion-content style="margin-top:20%;"  scroll="false">
+      <form name="forgotten" > 
+      <ion-item class="  item-icon-left item-icon-right put">
+            <i class="icon icon-awicon-user"></i>
+            <input style="font-size:16px;"autofocus="autofocus" name="id" type="text" placeholder="enter your student ID" required ng-model="loginData.username" ng-pattern="/^(\d)+(\D)+$/" >
+            <i class="icon valid" ng-show="forgotten.id.$valid"></i>
+          </ion-item>        
+        <br/>          
+        <div class="item item-divider">
+          <button type="submit" class="button button-block button-positive" ng-disabled="forgotten.$invalid" ng-click="forgetPwd(loginData.username)">        
+          <div ng-hide="loading">get new password</div>
+          <div class="sk-spinner sk-spinner-three-bounce" ng-show="loading">
+                <div class="sk-bounce1"></div>
+                <div class="sk-bounce2"></div>
+                <div class="sk-bounce3"></div>
+              </div></button>              
+        </div>
+      </form>
+    <a class="col text-center stable padding" ng-click="closeForgottenModal();openLoginModal()"> login</a>
+
+  </ion-content>
+</ion-modal-view>

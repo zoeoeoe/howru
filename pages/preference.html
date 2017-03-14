@@ -1,0 +1,52 @@
+<ion-modal-view on-drag-right="closeModal()">
+
+  <ion-header-bar class="bar-light"> 
+      <button class="button button-icon button-light icon-awicon-back" ng-click="closeModal()"></button> <h1 class="title">Settings</h1>
+  </ion-header-bar>  
+
+  <ion-content class="has-header"> 
+        <br/>
+        <ion-list>
+        <!-- <li class="item item-toggle item-icon-left whitebgdb">
+          <i class="icon ion-android-notifications-off"></i>
+          mute notification
+          <label class="toggle toggle-positive">
+            <input type="checkbox">
+              <div class="track">
+                <div class="handle"></div>
+              </div>
+          </label>
+        </li> -->
+        <ion-item class="item item-icon-left whitebgdb" ng-click="changeLanguage('zh')">
+          <i class="icon icon-awicon-lock"></i>
+          Change my password
+        </ion-item>      
+<!--         <label class="item item-icon-left whitebgdb item-input item-select">
+          <div class="input-label">
+            {{'LANGUAGE' | translate}}
+          </div>
+          <select>
+            <option ng-click="changeLanguage('en')">English</option>
+            <option ng-click="changeLanguage('zh')">简体中文</option>
+          </select>
+        </label>    -->
+                <div class="item item-divider"></div>  
+   
+        <ion-item class="item item-icon-left whitebgdb">
+          <i class="icon icon-awicon-user"></i>
+          
+          Edit my profile
+        </ion-item>
+        <div class="item item-divider"></div>
+        <ion-item class="item item-icon-left whitebgdb" ng-click="logoutConfirm()" ng-show="!global.user.isAnonymous">
+          <i class="icon icon-awicon-logout"></i>
+          Log out
+        </ion-item> 
+      </ion-list>
+
+    <ion-item class="text-center">
+    <div class="logoimg"> </div>
+      <p><small>Howru verion 0.9.1</small><p/>
+    </ion-item> <br/>
+    <ion-content>
+  </div>

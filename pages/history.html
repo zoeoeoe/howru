@@ -1,0 +1,25 @@
+<ion-modal-view  ng-controller="ListCtrl">
+
+  <ion-header-bar class="bar-light"> 
+      <button class="button button-icon button-light icon-awicon-back" ng-click="closeModal()"></button> <h1 class="title">Activities</h1>
+  </ion-header-bar>  
+    <ion-content has-bouncing="true" lazy-scroll>      
+    <br/>  
+      <div>
+        <ion-refresher on-refresh="doRefresh()" pulling-text="loading"></ion-refresher>   
+        <ion-list show-delete="data.showDelete">
+          <ion-item ng-repeat="event in events | filter:condition" item="item" ng-controller="EventCtrl" ng-click="closeModal();openDetailModal('{{event.ApptID}}')" class="padding">
+          <img class="favitemimg" ng-cache image-lazy-src="{{ addr(event.Image) ||'img/fish.svg' }}" lazy-scroll-resize="true" >
+          <h2 >{{event.Title}}&nbsp;</h2>
+          <p >{{tagsInfo(event.actTags)}}</p>
+          <ion-option-button class="button-positive icon icon-awicon-fav" ng-click="addtoFav(event)"></ion-option-button>
+          <ion-option-button class="button-stable icon icon-awicon-del" ng-click="drop(event)"></ion-option-button>
+          </ion-item>
+        </ion-list>
+        <br/><br/><br/><br/><br/>
+        <div class="infiimg"> </div><br/><br/><br/><br/><br/>
+    <ion-infinite-scroll  on-infinite="loadMore()" distance="-1%"></ion-infinite-scroll>
+
+    </ion-content>     
+
+</ion-modal-view>

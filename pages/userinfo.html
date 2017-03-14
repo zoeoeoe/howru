@@ -1,0 +1,34 @@
+<ion-modal-view>
+
+  <ion-header-bar class="bar-light"> 
+      <button class="button button-icon button-light icon-awicon-back" ng-click="closeInfoModal()"></button> 
+      <h1 class="title">{{u.NickName}} </h1>
+  </ion-header-bar> 
+
+  <ion-content>
+  <div class="row">
+    <div style="margin-top:40px;"class="col text-center" ng-click="todo()"><i class="icon icon-awicon-chat positive button"></i></div>
+    <div style="margin-top:20px;" class="text-center useruserimg"> </div> 
+    <div style="margin-top:40px;"class="col text-center" ng-click="todo()"><i class="icon icon-awicon-join positive button"></i></div>
+  </div>
+
+      <div class="list card whitebgdb">     
+          <item class="item item-icon-left stable">
+            <i class="icon icon-awicon-user"></i>
+            <p>{{u.NickName}} </p>
+          </item>      
+          <item class="item item-icon-left stable">
+            <i class="icon icon-awicon-wechat"></i>
+            <p>{{u.Wechat}}</p>
+          </item>
+          <item class="item item-icon-left stable">
+            <i class="icon icon-awicon-no"></i>
+            <p>{{u.Mobile}}</p>
+          </item>   
+          <item class="item item-icon-left stable">
+            <i class="icon icon-awicon-plus"></i>
+            <p>{{u.Introduction}}</p>
+          </item>                      
+    </div>                  
+  </ion-content>
+</ion-modal-view>

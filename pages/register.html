@@ -1,0 +1,47 @@
+<ion-modal-view name="login-form" ng-controller="RegisterCtrl" ng-directive="pwCheck" hide-nav-bar="true" style="background-color:#f8f8f8;">
+  <ion-header-bar style="background-color:#f8f8f8;"> 
+  </ion-header-bar>
+    <ion-content style="margin-top:10%;" scroll="false"> 
+          <form name="register" ng-submit="submit()" >        
+          <ion-item class="  item-icon-left item-icon-right put ">
+                <i class="icon icon-awicon-no"></i>
+                <input style="font-size:16px;" type="text" autofocus="autofocus" ng-Minlength="9" ng-Maxlength="9" ng-model="u.username" ng-pattern="/^(\d)+(\D)+$/" name="username" placeholder="enter your student ID" required>
+                <i class="icon valid" ng-show="register.username.$valid"></i>
+          </ion-item>
+
+          <!--<ion-item class="  item-icon-left  put">
+                <i class="icon icon-awicon-user"></i>
+                <input type="text" ng-model="u.NickName" name="nickname" placeholder="enter your nickname" required>            
+          </ion-item>-->
+
+          <ion-item class="  item-icon-left item-icon-right put">
+                <i class="icon icon-awicon-lock"></i>
+                <input style="font-size:16px;"  type="password" ng-model="u.pwd" ng-minlength="6" name="password" placeholder="enter your password" required>
+                <i class="icon valid" ng-show="register.password.$valid"></i>
+          </ion-item>    
+
+          <ion-item class=" item-icon-left item-icon-right put">
+                <i class="icon icon-awicon-lock"></i>
+<!--                <i class="icon error" ng-show="u.pwd!=pwdre.v"></i>  -->              
+                <input style="font-size:16px;"  type="password" name="passwordre" ng-model="pwdre.v" ng-minlength="6" placeholder="confirm your password" required> 
+                <i class="icon valid" ng-show="register.passwordre.$valid && u.pwd==pwdre.v"></i>
+          </ion-item>
+          
+          <small class="stable text-center"><p><br/><input class="checkbox" type="checkbox" name="terms" ng-model="agree" required>&emsp;I understand and agree with the <i class="positive" ng-click="openTerms();">Howru Terms of Service.</i></p></small>
+
+          <ion-item class="  item-divider ">
+                <button class="button button-full button-positive" ng-disabled="register.passwordre.$invalid || u.pwd!=pwdre.v || !agree" type="submit" >
+					<div ng-show="!loading">next</div>
+					<div class="sk-spinner sk-spinner-three-bounce" ng-show="loading">
+                    	<div class="sk-bounce1"></div>
+                    	<div class="sk-bounce2"></div>
+                    	<div class="sk-bounce3"></div>
+                 	</div>
+				</button>     
+          </ion-item>
+          </form>
+
+            <a class="col text-center stable padding" ng-click="closeRegisterModal();openLoginModal()"> login</a>
+
+  </ion-content>
+</ion-modal-view>
